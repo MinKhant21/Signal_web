@@ -1,0 +1,9 @@
+import React from 'react'
+import LoginForm from '../components/LoginForm'
+export default function Login() {
+  return (
+    <div className='container h-screen flex justify-center items-center '>
+       <LoginForm/>
+    </div>
+  )
+}
