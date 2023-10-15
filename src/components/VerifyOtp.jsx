@@ -9,19 +9,18 @@ export default function VerifyOtp() {
    const [five,setFive] = useState('')
    const [six,setSix] = useState('')
    const [error,setError] = useState('')
-
-   let otp = one+two+three+four+five+six
-   
-   useEffect(()=>{
-        if(otp.length == 6 && six){
-            console.log("do")
+   const HandleOtp = (e) => {
+        e.preventDefault()
+        const otpNumber = one+two+three+four+five+six
+        const otp = localStorage.getItem('otp')
+        if(JSON.parse(otp) == otpNumber){
+            setError('')
+            console.log("same")
+        }else{
+            setError('Dont match OTP code please try again')
         }
-        if(otp.length < 6 && !six){
-            setError("Please Fill Your OTP Received Code ")
-        }
-       setError(preStae=>preStae = '')
-
-   },[otp,six])
+   }
+ 
   return (
     <div className="p-10 shadow-lg shadow-indigo-500/40  rounded-md ">
         <div className='mb-4'>
@@ -42,13 +41,14 @@ export default function VerifyOtp() {
             <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setFive(e.target.value)} id="first" maxlength="1" /> 
             <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setSix(e.target.value)} id="first" maxlength="1" /> 
         </div>
-        {
-            error && 
-            <p>{error}</p>
-        }
+       
         </div>
+        {
+            error  &&  
+                <p className=' text-sm text-red-600'>{error}</p>
+        }
         <div className='flex-block w-6/12 float-right mt-4'>
-            <p  className='p-3 text-center bg-cyan-400 color-black rounded-md cursor-pointer'>Continue</p>
+            <p onClick={HandleOtp} className='p-3 text-center bg-cyan-400 color-black rounded-md cursor-pointer'>Continue</p>
         </div>
     </div>
   )
