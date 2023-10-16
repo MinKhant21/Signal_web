@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function VerifyOtp() {
-   
+   const Navigate = useNavigate()
    const [one,setOne] = useState('')
    const [two,setTwo] = useState('')
    const [three,seTthree] = useState('')
@@ -15,7 +16,7 @@ export default function VerifyOtp() {
         const otp = localStorage.getItem('otp')
         if(JSON.parse(otp) == otpNumber){
             setError('')
-            console.log("same")
+            Navigate('/')
         }else{
             setError('Dont match OTP code please try again')
         }

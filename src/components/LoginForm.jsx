@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import '../features/authSlice'
+import { useNavigate } from 'react-router-dom'
 export default function LoginForm({HandleShowVerify}) {
     const [countryCode , setCountryCode] = useState('')
     const [phoneNumber , setPhonNumber] = useState('')
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState("")
-    // const apiUrl = useSelector(state=>state.auth.apiUrl)
+    const Navigate = useNavigate()
+    let token = localStorage.getItem("token")
+
+    useEffect(()=>{
+        if(token){
+          Navigate("/")
+        }
+      },[token])
     const HandleLoginForm = (e) => {
         e.preventDefault();
         setLoading(true)
