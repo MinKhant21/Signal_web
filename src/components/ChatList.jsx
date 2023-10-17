@@ -1,6 +1,10 @@
 import React from 'react'
-
+import { useSelector } from 'react-redux'
+import useGetUser from '../hooks/useGetUser'
 export default function ChatList() {
+    const apiUrl = useSelector(state=>state.auth.apiUrl)
+    const {users,error,loading} = useGetUser(apiUrl)
+    console.log(loading)
   return (
     <li>
     <a

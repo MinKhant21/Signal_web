@@ -9,7 +9,6 @@ export default function Home() {
         if(!token){
             Navigate("login")
         }
-       
     },[token])
   return (
     <>
