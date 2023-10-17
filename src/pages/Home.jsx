@@ -5,6 +5,7 @@ import ChatRoom from './ChatRoom'
 export default function Home() {
     const Navigate = useNavigate()
     const token = localStorage.getItem('token')
+    
     useEffect(()=>{
         if(!token){
             Navigate("login")
