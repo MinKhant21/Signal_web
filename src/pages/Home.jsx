@@ -13,9 +13,8 @@ export default function Home() {
         if(!token){
             Navigate("login")
         }
-        let io = openSocket(baseUrl)
         
-    },[token,baseUrl,openSocket])
+    },[token,baseUrl])
   return (
     <>
     <div class="container mx-auto">

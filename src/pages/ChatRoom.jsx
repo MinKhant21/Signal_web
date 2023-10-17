@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
+import openSocket from 'socket.io-client'
 export default function ChatRoom() {
     const [user,setUser] = useState(null)
     const phoneNumber = useSelector(state=>state.chat.phoneNumber)
+    const apiUrl = useSelector(state=>state.auth.apiUrl)
     useEffect(()=>{
+        let io = openSocket(`${apiUrl}/join-chat-room`)
+        let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+        let token = localStorage.getItem('token')
+        io.emit('join-chat-room',{
+          user : userInfo._id,
+          token : token
+        })
         setUser(phoneNumber)
-    },[phoneNumber])
+    },[phoneNumber,apiUrl,openSocket])
   return (
     <>
         <div class="hidden lg:col-span-2 lg:block">
