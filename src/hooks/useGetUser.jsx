@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 function useGetUser (apiUrl)  {
-    let [users,setUsers] = useState('')
+    let [users,setUsers] = useState([])
     let [error , setError] = useState("")
     let [loading,setLoading] = useState(false)
     let token = localStorage.getItem('token')
@@ -20,7 +20,7 @@ function useGetUser (apiUrl)  {
         .then(data=>{
             if(data.status == "200"){
                 setLoading(false)
-                console.log(data)
+                setUsers(data.data)
             }
         })
         .catch(e=>{

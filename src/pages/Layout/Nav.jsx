@@ -9,15 +9,12 @@ export default function Nav() {
         <div>
             <MyAccount/>
         </div>
-          <div class="mx-3 my-3">
-            <div class="relative text-gray-600">
-                <Search/>
+            <div class="mx-3 my-3">
+                <div class="relative text-gray-600">
+                    <Search/>
+                </div>
             </div>
-          </div>
-          <ul class="overflow-auto h-[32rem]">
-            <h2 class="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
             <ChatList/>
-          </ul>
         </div>
     </>
   )
