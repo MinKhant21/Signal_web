@@ -7,7 +7,7 @@ export default function Login() {
     const Navigate = useNavigate()
 
     const HandleShowVerify = (value) =>{
-        setShowVerify(value)
+        setShowVerify(preState=>console.log(preState))
     }
 
    
