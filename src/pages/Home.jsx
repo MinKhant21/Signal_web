@@ -2,15 +2,20 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Nav from './Layout/Nav'
 import ChatRoom from './ChatRoom'
+import openSocket from 'socket.io-client'
+import { useSelector } from 'react-redux'
+
 export default function Home() {
     const Navigate = useNavigate()
     const token = localStorage.getItem('token')
-    
+    const baseUrl = useSelector(state=>state.auth.baseUrl)
     useEffect(()=>{
         if(!token){
             Navigate("login")
         }
-    },[token])
+        let io = openSocket(baseUrl)
+        
+    },[token,baseUrl,openSocket])
   return (
     <>
     <div class="container mx-auto">
