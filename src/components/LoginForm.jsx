@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 export default function LoginForm({HandleShowVerify}) {
     const [countryCode , setCountryCode] = useState('')
     const [phoneNumber , setPhonNumber] = useState('')
+    const [name , setName] = useState('')
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState("")
     const Navigate = useNavigate()
@@ -30,7 +31,8 @@ export default function LoginForm({HandleShowVerify}) {
     const postLogin = async() => {
         const data = {
             countryCode,
-            phoneNumber
+            phoneNumber,
+            name,
         }
         await fetch("http://127.0.0.1:4200/api/login", {
                 method: "POST",
@@ -66,8 +68,11 @@ export default function LoginForm({HandleShowVerify}) {
             Enter your phone number to get started
         </span>
     </div>
-   
+    <div className='mb-4'>
+        <input type="text" placeholder='Enter Your Name' className='w-full p-3 bg-cyan-200 outline-none hover:border-2 border-indigo-200 border-b-indigo-500' onChange={e => setName(e.target.value)}  />
+    </div>
     <div className='flex justify-center items-center gap-5'>
+       
         <div>
             <select className='p-3 bg-cyan-200 outline-none hover:border-2 border-indigo-200 border-b-indigo-500' onChange={e =>setCountryCode(e.target.value)}>
                 <option value="+95">+95</option>
