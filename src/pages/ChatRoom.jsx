@@ -3,18 +3,29 @@ import { useSelector } from 'react-redux'
 import openSocket from 'socket.io-client'
 export default function ChatRoom() {
     const [user,setUser] = useState(null)
+    const [message,setMessage] = useState('')
     const phoneNumber = useSelector(state=>state.chat.phoneNumber)
-    const apiUrl = useSelector(state=>state.auth.apiUrl)
+    const baseUrl = useSelector(state=>state.auth.baseUrl)
     useEffect(()=>{
-        let io = openSocket(`${apiUrl}/join-chat-room`)
-        let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-        let token = localStorage.getItem('token')
-        io.emit('join-chat-room',{
-          user : userInfo._id,
-          token : token
-        })
+      let io = openSocket(`${baseUrl}`)
+      io.on('chat',(data)=>{
+        console.log(data)
+      })
         setUser(phoneNumber)
-    },[phoneNumber,apiUrl,openSocket])
+    },[phoneNumber,baseUrl,openSocket])
+
+    const HandleChatMessage = (e) => {
+      e.preventDefault();
+      let io = openSocket(`${baseUrl}`)
+      // let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      let token = localStorage.getItem('token')
+      io.emit('chat',{
+        fromUser : phoneNumber,
+        token : token,
+        message : message
+      })
+      
+    }
   return (
     <>
         <div class="hidden lg:col-span-2 lg:block">
@@ -27,7 +38,9 @@ export default function ChatRoom() {
               </span>
             </div>
             <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
-              
+              <p>
+
+              </p>
             </div>
 
             <div class="flex items-center justify-between w-full p-3 border-t border-gray-300">
@@ -48,7 +61,7 @@ export default function ChatRoom() {
 
               <input type="text" placeholder="Message"
                 class="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
-                name="message" required />
+                name="message" required onChange={(e)=>setMessage(e.target.value)} />
               <button>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor">
@@ -56,7 +69,7 @@ export default function ChatRoom() {
                     d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
               </button>
-              <button type="submit">
+              <button type="submit" onClick={HandleChatMessage}>
                 <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20" fill="currentColor">
                   <path
