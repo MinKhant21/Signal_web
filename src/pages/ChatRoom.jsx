@@ -48,7 +48,6 @@ export default function ChatRoom() {
         <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
         <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
                 <ChatMessage/>
-             
             </div>
           <p>
               {chat}
