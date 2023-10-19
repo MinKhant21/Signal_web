@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Nav from './Layout/Nav'
 import ChatRoom from './ChatRoom'
-import openSocket from 'socket.io-client'
 import { useSelector } from 'react-redux'
 
 export default function Home() {

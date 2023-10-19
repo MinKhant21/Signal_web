@@ -3,19 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const chatSlice = createSlice({
     name : 'chat',
     initialState : {
-        phoneNumber : "",
-        Name : "",
+        user : [],
+        messages : []
     },
     reducers:{
         setInfo : (state,actions) => {
-            state.phoneNumber = actions.payload
+            state.user = actions.payload
         },
-        getInfo : (state) => {
-            console.log(state)
+        setMessages : (state,actions) => {
+            state.messages = actions.payload
         }
     }
 })
 
-export const {setInfo,getInfo} = chatSlice.actions
+export const {setInfo,setMessages} = chatSlice.actions
 
 export default chatSlice.reducer
