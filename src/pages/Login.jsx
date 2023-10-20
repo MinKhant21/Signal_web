@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import LoginForm from '../components/LoginForm'
 import VerifyOtp from '../components/VerifyOtp'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
 export default function Login() {
     const [showVerify,setShowVerify] = useState(false)
     const Navigate = useNavigate()
-
+    const user = useContext(AuthContext)
+    console.log(user)
     const HandleShowVerify = (value) =>{
         setShowVerify(preState=>console.log(preState))
     }

@@ -2,10 +2,10 @@ import React from 'react'
 import Search from '../../components/Search'
 import ChatList from '../../components/ChatList'
 import MyAccount from '../../components/MyAccount'
-export default function Nav() {
+export default function SideBar() {
   return (
     <>
-       <div class="border-r border-gray-300 lg:col-span-1">
+       <div class="bg-[#F9F9F9] lg:col-span-1">
         <div>
             <MyAccount/>
         </div>
