@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SideBar from './Layout/SideBar'
 import ChatRoom from './ChatRoom'
@@ -6,17 +6,13 @@ import { useSelector } from 'react-redux'
 import { AuthContext } from '../context/AuthContext'
 
 export default function Home() {
-  // const user = useContext(AuthContext)
-  // console.log(user)
-    const Navigate = useNavigate()
-    const token = localStorage.getItem('token')
-    const baseUrl = useSelector(state=>state.auth.baseUrl)
-    useEffect(()=>{
-        if(!token){
-            Navigate("login")
-        }
-        
-    },[token,baseUrl])
+  const Navigate = useNavigate();
+  const user = useContext(AuthContext)
+  useEffect(()=>{
+    if(!user.user){
+      Navigate('/login')
+    }
+  },[user])
   return (
     <>
       <div class="container mx-auto">

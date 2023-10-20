@@ -6,8 +6,7 @@ import { AuthContext } from '../context/AuthContext'
 export default function Login() {
     const [showVerify,setShowVerify] = useState(false)
     const Navigate = useNavigate()
-    const user = useContext(AuthContext)
-    console.log(user)
+  
     const HandleShowVerify = (value) =>{
         setShowVerify(preState=>console.log(preState))
     }
