@@ -3,18 +3,15 @@ import { useNavigate } from 'react-router-dom'
 
 export default function VerifyOtp() {
    const Navigate = useNavigate()
-   const [one,setOne] = useState('')
-   const [two,setTwo] = useState('')
-   const [three,seTthree] = useState('')
-   const [four,setFour] = useState('')
-   const [five,setFive] = useState('')
-   const [six,setSix] = useState('')
+   
    const [error,setError] = useState('')
+    
+   const [otp,setOtp] = useState('')
+
    const HandleOtp = (e) => {
         e.preventDefault()
-        const otpNumber = one+two+three+four+five+six
-        const otp = localStorage.getItem('otp')
-        if(JSON.parse(otp) == otpNumber){
+        const localOtp = localStorage.getItem('otp')
+        if(JSON.parse(localOtp) === otp){
             setError('')
             Navigate('/')
         }else{
@@ -33,16 +30,14 @@ export default function VerifyOtp() {
             </span>
         </div>
         <div className='flex justify-center items-center gap-5'>
-
-        <div id="otp" className="flex flex-row justify-center text-center px-2 mt-5">
-            <input className="m-2 border h-10 w-10 text-center form-control rounded cursor-auto" type="text" onChange={e=>setOne(e.target.value)} id="first" maxlength="1" /> 
-            <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text" onChange={e=>setTwo(e.target.value)} id="first" maxlength="1" /> 
-            <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>seTthree(e.target.value)} id="first" maxlength="1" /> 
-            <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setFour(e.target.value)} id="first" maxlength="1" /> 
-            <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setFive(e.target.value)} id="first" maxlength="1" /> 
-            <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setSix(e.target.value)} id="first" maxlength="1" /> 
-        </div>
-       
+            <div id="otp" className="flex flex-row justify-center text-center px-2 mt-5">
+                <input className="m-2 border h-10 w-10 text-center form-control rounded cursor-auto" type="text" onChange={e=>setOtp(prevState => prevState+e.target.value)} id="first" maxlength="1" /> 
+                <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text" onChange={e=>setOtp(prevState => prevState+e.target.value)} id="first" maxlength="1" /> 
+                <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setOtp(prevState => prevState+e.target.value)} id="first" maxlength="1" /> 
+                <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setOtp(prevState => prevState+e.target.value)} id="first" maxlength="1" /> 
+                <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setOtp(prevState => prevState+e.target.value)} id="first" maxlength="1" /> 
+                <input className="m-2 border h-10 w-10 text-center form-control rounded" type="text"onChange={e=>setOtp(prevState => prevState+e.target.value)} id="first" maxlength="1" /> 
+            </div>
         </div>
         {
             error  &&  
