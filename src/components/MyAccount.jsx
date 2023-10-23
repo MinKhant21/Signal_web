@@ -18,7 +18,7 @@ export default function MyAccount() {
                 {/* {user.name} <br /> */}
                 {/* {user.phoneNumber} */}
                 </span>
-                <span className='p-3 rounded-md shadow-md bg-red-100 cursor-pointer hover:bg-red-200 focus:outline-none' onClick={HandleLogOut}>Logout</span>
+                <span className='p-3 rounded-md shadow-md bg-gradient-to-r cursor-pointer from-green-400 text-white font-sans font-semibold to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onClick={HandleLogOut}>Logout</span>
             </div>
         </div>
     </p>

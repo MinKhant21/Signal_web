@@ -5,7 +5,7 @@ import MyAccount from '../../components/MyAccount'
 export default function SideBar() {
   return (
     <>
-       <div class="bg-[#F9F9F9] lg:col-span-1">
+       <div class="bg-[#F9F9F9] lg:col-span-1 mr-4 shrink-0 shadow-md rounded-md ">
         <div>
             <MyAccount/>
         </div>

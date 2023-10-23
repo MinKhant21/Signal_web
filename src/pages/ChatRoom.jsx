@@ -9,6 +9,8 @@ export default function ChatRoom() {
     const [chat,setChat] = useState('')
     const toUser = useSelector(state=>state.chat.user)
     const baseUrl = useSelector(state=>state.auth.baseUrl)
+    const messages = useSelector(state=>state.chat.messages)
+
     useEffect(()=>{
       let io = openSocket(`${baseUrl}`)
       io.on('chat',(data)=>{
@@ -24,19 +26,19 @@ export default function ChatRoom() {
     <>
     {
       user &&
-      <div class=" lg:col-span-2 lg:block">
-      <div class="w-full">
-        <div class="relative flex items-center p-3 border-b border-gray-300">
-          <img class="object-cover w-10 h-10 rounded-full"
+      <div className=" lg:col-span-2 lg:block">
+      <div className="w-full">
+        <div className="relative flex items-center p-3 border-b border-gray-300">
+          <img className="object-cover w-10 h-10 rounded-full"
             src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg" alt="username" />
-          <span class="block ml-2 font-bold text-gray-600">{user}</span> 
-          {/* <b className='float-right'><small >{phone}</small></b> */}
-          <span class="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3">
+          <span className="block ml-2 font-bold text-gray-600">{user}</span> 
+          {/* <b classNameName='float-right'><small >{phone}</small></b> */}
+          <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3">
           </span>
         </div>
-        <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
-        <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
-          <ChatMessage message={chat}/>
+        <div className="relative w-full p-6 overflow-y-auto h-[40rem]">
+        <div className="relative w-full p-6 overflow-y-auto h-[40rem]">
+          <ChatMessage/>
           {
             chat && 
             <div className='relative max-w-xl px-4 py-2 text-gray-700 rounded shadow '>
@@ -52,7 +54,7 @@ export default function ChatRoom() {
       </div>
     </div>
     }
-    <p>Not Have Phone</p>
+    {/* <p>Not Have Phone</p> */}
        
     </>
   )
