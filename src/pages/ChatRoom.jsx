@@ -24,7 +24,7 @@ export default function ChatRoom() {
     <>
     {
       user &&
-      <div class="hidden lg:col-span-2 lg:block">
+      <div class=" lg:col-span-2 lg:block">
       <div class="w-full">
         <div class="relative flex items-center p-3 border-b border-gray-300">
           <img class="object-cover w-10 h-10 rounded-full"
@@ -36,12 +36,17 @@ export default function ChatRoom() {
         </div>
         <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
         <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
-        <p>
-             {/* {chat} */}
-          </p>
-                <ChatMessage/>
+          <ChatMessage message={chat}/>
+          {
+            chat && 
+            <div className='relative max-w-xl px-4 py-2 text-gray-700 rounded shadow '>
+              <span className="block">
+              {chat}
+              </span>
             </div>
-          
+          }
+        </div>
+            
         </div>
         <ChatMainBar/>
       </div>
