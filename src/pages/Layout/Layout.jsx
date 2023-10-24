@@ -9,8 +9,8 @@ export default function Layout() {
    
   return (
     <>
-    <div class="container mx-auto">
-        <div class="min-w-full border rounded lg:grid lg:grid-cols-3">
+    <div class="container  mx-auto mt-24">
+        <div class="min-w-full  border rounded lg:grid lg:grid-cols-3">
           <SideBar/>
           <div className=' lg:col-span-2 lg:block'>
           <SwitchTransition>
