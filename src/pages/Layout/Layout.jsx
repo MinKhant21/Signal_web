@@ -14,8 +14,8 @@ export default function Layout() {
           <SideBar/>
           <div className=' lg:col-span-2 lg:block'>
           <SwitchTransition>
-                <CSSTransition timeout={200} classNames="fade" key={location.pathname}>
-                    <div className="p-4 max-w-6xl mx-auto">
+                <CSSTransition timeout={300} classNames="fade" key={location.pathname}>
+                    <div className="">
                         <Outlet/>
                     </div>
                 </CSSTransition>
