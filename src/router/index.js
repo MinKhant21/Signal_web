@@ -3,6 +3,7 @@ import Login from '../pages/Login'
 import Home from '../pages/Home'
 import Layout from "../pages/Layout/Layout";
 import VerifyOtp from "../components/VerifyOtp";
+import ChatRoom from "../pages/ChatRoom";
 
 const router = createBrowserRouter([
     {
@@ -10,8 +11,8 @@ const router = createBrowserRouter([
         element:<Layout/>,
         children:[
             {
-                path:'',
-                element:<Home/>
+                path:'/chatroom',
+                element:<ChatRoom/>
             }
         ]
     },

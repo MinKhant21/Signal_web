@@ -26,7 +26,7 @@ export default function ChatRoom() {
     <>
     {
       user &&
-      <div className=" lg:col-span-2 lg:block">
+      <div className="">
       <div className="w-full">
         <div className="relative flex items-center p-3 border-b border-gray-300">
           <img className="object-cover w-10 h-10 rounded-full"
@@ -52,7 +52,7 @@ export default function ChatRoom() {
         </div>
         <ChatMainBar/>
       </div>
-    </div>
+      </div>
     }
     {/* <p>Not Have Phone</p> */}
        

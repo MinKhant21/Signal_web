@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {setInfo,setMessages} from "../../features/chatSlice"
+import { useNavigate } from 'react-router-dom'
 
 export default function ChatPeople({user}) {
     const apiUrl = useSelector(state=>state.auth.apiUrl)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const Navigate = useNavigate()
     const HandleSelectUser =  (user) => {
         // localStorage.setItem('chat-to',phoneNumber)
         dispatch(setInfo(user))
@@ -23,6 +25,8 @@ export default function ChatPeople({user}) {
         .then(messages=>{
             if(messages.status =="200"){
                 dispatch(setMessages(messages.messages))
+                Navigate('/chatroom')
+                
             }
         })
     }
@@ -34,8 +38,8 @@ export default function ChatPeople({user}) {
             src="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg" alt="username" />
         <div className="w-full pb-2">
             <div className="flex justify-between">
-            <span className="block ml-2   font-sans font-semibold ">{user.phoneNumber}</span>
-            <span className="block ml-2 text-sm  font-sans font-semibold">25 minutes</span>
+                <span className="block ml-2   font-sans font-semibold ">{user.phoneNumber}</span>
+                <span className="block ml-2 text-sm  font-sans font-semibold">25 minutes</span>
             </div>
             <span className="block ml-2 text-sm  font-sans font-semibold">bye</span>
         </div>
