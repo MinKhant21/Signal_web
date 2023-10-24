@@ -24,6 +24,7 @@ export default function ChatList() {
                 }
                 
             </ul>
+            
             :
             <div className='flex justify-center items-center mx-auto h-96'>
                 <Spinner/>
