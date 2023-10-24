@@ -15,7 +15,7 @@ export default function Home() {
   },[user])
   return (
     <>
-      <div class="container mx-auto">
+      <div class="container mx-auto mt-5">
         <div class="min-w-full border rounded lg:grid lg:grid-cols-3">
           <SideBar/>
           <ChatRoom/>
