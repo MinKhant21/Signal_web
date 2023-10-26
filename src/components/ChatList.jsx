@@ -18,7 +18,7 @@ export default function ChatList() {
                 <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
                 {
                     users.map(user=>
-                        <ChatPeople user={user.user_two_id[0]}/>
+                        <ChatPeople user={user}/>
                     )
                 }
                 

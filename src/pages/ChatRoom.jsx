@@ -4,8 +4,8 @@ import openSocket from 'socket.io-client'
 import ChatMessage from '../components/Chat/ChatMessage'
 import ChatMainBar from '../components/Form/ChatMainBar'
 export default function ChatRoom() {
-    const [user,setUser] = useState(null)
-    const [phone,setPhone] = useState(null)
+    const [user,setUser] = useState('')
+    const [phone,setPhone] = useState('null')
     const [chat,setChat] = useState('')
     const toUser = useSelector(state=>state.chat.user)
     const baseUrl = useSelector(state=>state.auth.baseUrl)

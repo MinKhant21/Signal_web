@@ -13,9 +13,10 @@ export default function ChatPeople({user}) {
         await chatUser(user)
     }
     const chatUser = async(user) => {
-        dispatch(setInfo(user))
-
-        await fetch(`${apiUrl}/history?id=${user._id}`,{
+        localStorage.setItem('roomId',user._id)
+        dispatch(setInfo(user.user_two_id[0]))
+        console.log(user.user_two_id[0]._id)
+        await fetch(`${apiUrl}/history?id=${user.user_two_id[0]._id}`,{
             method:"GET",
             headers:{
                 "Content-type" : "application/json",
@@ -40,7 +41,7 @@ export default function ChatPeople({user}) {
             src="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg" alt="username" />
         <div className="w-full pb-2">
             <div className="flex justify-between">
-                <span className="block ml-2   font-sans font-semibold ">{user.phoneNumber}</span>
+                <span className="block ml-2   font-sans font-semibold ">{user.user_two_id[0].phoneNumber}</span>
                 <span className="block ml-2 text-sm  font-sans font-semibold">25 minutes</span>
             </div>
             <span className="block ml-2 text-sm  font-sans font-semibold">bye</span>
