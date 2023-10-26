@@ -1,22 +1,40 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import openSocket from 'socket.io-client'
+import {setMessageClaer} from "../../features/chatSlice"
 
-export default function ChatSubmit({message}) {
+export default function ChatSubmit() {
+
   const baseUrl = useSelector(state=>state.auth.baseUrl)
+  const apiUrl = useSelector(state=>state.auth.apiUrl)
   const toUser = useSelector(state=>state.chat.user)
-console.log(toUser)
-  const HandleChatMessage = (e) => {
+
+  const dispatch = useDispatch()
+  const message = useSelector(state=>state.chat.message)
+  let io = openSocket(`${baseUrl}`)
+  let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  let token = localStorage.getItem('token')
+  const HandleChatMessage = async (e) => {
     e.preventDefault();
-    let io = openSocket(`${baseUrl}`)
-    let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-    let token = localStorage.getItem('token')
-    io.emit('chat',{
-      fromUser : userInfo,
-      toUser : toUser,
-      // roomId : 
-      token : token,
-      message : message
+    
+    await chatMessage();
+    
+  }
+  const chatMessage = async () => {
+    await fetch(`${apiUrl}/chat`,{
+      method:"GET",
+      headers:{
+        "Content-Type" : "application/json",
+        "x-auth-token" : token
+      } 
+    }).then(data=>{
+      io.emit('chat',{
+        fromUser : userInfo,
+        toUser : toUser,
+        roomId : localStorage.getItem('roomId'),
+        message : message
+      })
+      dispatch(setMessageClaer())
     })
   }
   return (

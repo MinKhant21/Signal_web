@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import openSocket from 'socket.io-client'
 import ChatMessage from '../components/Chat/ChatMessage'
-import ChatMainBar from '../components/Form/ChatMainBar'
+import ChatInputBar from '../components/Form/ChatInputBar'
 export default function ChatRoom() {
     const [user,setUser] = useState('')
     const [phone,setPhone] = useState('null')
@@ -14,7 +14,6 @@ export default function ChatRoom() {
     useEffect(()=>{
       let io = openSocket(`${baseUrl}`)
       io.on('chat',(data)=>{
-        console.log(data)
         setChat(data)
       })
       setUser(toUser.name)
@@ -25,7 +24,7 @@ export default function ChatRoom() {
   return (
     <>
     {
-      user &&
+      user ?
       <div className=" shadow-md rounded-md">
       <div className="w-full">
         <div className="relative flex items-center p-3 border-b border-gray-300">
@@ -50,12 +49,14 @@ export default function ChatRoom() {
         </div>
             
         </div>
-        <ChatMainBar/>
+        <ChatInputBar/>
       </div>
       </div>
+      :
+      <h1>hello</h1>
+         
     }
-    {/* <p>Not Have Phone</p> */}
-       
     </>
+  
   )
 }
