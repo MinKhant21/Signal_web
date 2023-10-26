@@ -5,7 +5,7 @@ import openSocket from 'socket.io-client'
 export default function ChatSubmit({message}) {
   const baseUrl = useSelector(state=>state.auth.baseUrl)
   const toUser = useSelector(state=>state.chat.user)
-
+console.log(toUser)
   const HandleChatMessage = (e) => {
     e.preventDefault();
     let io = openSocket(`${baseUrl}`)
@@ -14,6 +14,7 @@ export default function ChatSubmit({message}) {
     io.emit('chat',{
       fromUser : userInfo,
       toUser : toUser,
+      // roomId : 
       token : token,
       message : message
     })
