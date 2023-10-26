@@ -8,11 +8,14 @@ export default function ChatPeople({user}) {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
     const Navigate = useNavigate()
-    const HandleSelectUser =  (user) => {
+    const HandleSelectUser = async (user) => {
         // localStorage.setItem('chat-to',phoneNumber)
+        await chatUser(user)
+    }
+    const chatUser = async(user) => {
         dispatch(setInfo(user))
 
-         fetch(`${apiUrl}/history?id=${user._id}`,{
+        await fetch(`${apiUrl}/history?id=${user._id}`,{
             method:"GET",
             headers:{
                 "Content-type" : "application/json",
@@ -26,7 +29,6 @@ export default function ChatPeople({user}) {
             if(messages.status =="200"){
                 dispatch(setMessages(messages.messages))
                 Navigate('/chatroom')
-                
             }
         })
     }
