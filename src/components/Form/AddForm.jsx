@@ -3,17 +3,19 @@ import { useSelector } from 'react-redux';
 
 export default function AddForm() {
     const apiUrl = useSelector(state=> state.auth.apiUrl)
+    const token = localStorage.getItem('token')
     const [phoneNumber , setPhoneNumber] = useState('')
     const HandleAddForm = async (e) => {
         e.preventDefault();
         const options = {
             method:"POST",
             headers:{
-                "Content-Type" : "application/json"
-            }
+                "Content-Type" : "application/json",
+                "x-auth-token" :token
+            },
+            body : JSON.stringify({phoneNumber:phoneNumber})
         }
         await fetch(`${apiUrl}/add-friend`,options)
-        .then(res=>return res.json())
         .then(data=>console.log(data))
     }
   return (
