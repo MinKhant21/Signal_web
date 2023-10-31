@@ -17,10 +17,7 @@ export default function ChatSubmit() {
   const HandleChatMessage = async (e) => {
     e.preventDefault();
     
-    await chatMessage();
-    
-  }
-  const chatMessage = async () => {
+     let roomId =  localStorage.getItem('roomId') 
     await fetch(`${apiUrl}/chat`,{
       method:"GET",
       headers:{
@@ -31,12 +28,14 @@ export default function ChatSubmit() {
       io.emit('chat',{
         fromUser : userInfo,
         toUser : toUser,
-        roomId : localStorage.getItem('roomId'),
+        roomId : roomId,
         message : message
       })
       dispatch(setMessageClaer())
     })
+    
   }
+ 
   return (
     <button type="submit" onClick={HandleChatMessage}>
             <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg"

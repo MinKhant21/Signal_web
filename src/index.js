@@ -14,9 +14,8 @@ root.render(
    
         <Provider store={store}>
              <AuthContextProvider>
-            <RouterProvider router={router}/>
+                <RouterProvider router={router}/>
             </AuthContextProvider>
-
         </Provider>
    
 );
