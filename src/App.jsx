@@ -6,13 +6,17 @@ import router from './router';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {AuthContextProvider} from './contexts/AuthContext';
+import Routes from './router';
 
 export default function App() {
   
   return (
     <>
-      <RouterProvider router={router} />
-      <ToastContainer/>
+      <AuthContextProvider>
+        <Routes/>
+        <ToastContainer/>
+      </AuthContextProvider>
     </>
   )
 }
