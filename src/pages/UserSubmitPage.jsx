@@ -13,6 +13,7 @@ export default function LoginPage() {
     let [isDisabled, setIsDisabled] = useState(false);
     let navigate = useNavigate();
 
+    let [displayName,setdisplayName] = useState('');
     let [email,setEmail] = useState('');
     let [password , setPassword] = useState('');
 
@@ -22,8 +23,9 @@ export default function LoginPage() {
       e.preventDefault();
       setIsDisabled(true)
       if(!page){
-        let user = await signUpAndsignIn(email,password,"Register")
-        console.log(user)
+        let user = await signUpAndsignIn(displayName,email,password,"Register")
+         //Create a unique image name
+        
         if(user){
           if(error){
             toast.error(error)
@@ -34,7 +36,8 @@ export default function LoginPage() {
           navigate('/chat')
         }
       }else if(page){
-        let user = await signUpAndsignIn(email,password,"Login")
+        let user = await signUpAndsignIn(displayName,email,password,"Login")
+        console.log(user)
         if(user){
           if(error){
             toast.error(error)
@@ -51,7 +54,7 @@ export default function LoginPage() {
     return (
       <>
         <div className=' flex items-center justify-center h-screen'>
-              <div className='w-[500px] h-[500px] p-4 bg-white shadow-md rounded-lg '>
+              <div className={`w-[500px] ${ page ? 'h-[500px]' : 'h-[600px]'} p-4 bg-white shadow-md rounded-lg`}>
               <div className="">
                   <div className="p-8  mx-auto">
                     <div className="bg-white rounded-t-lg p-8">
@@ -105,6 +108,13 @@ export default function LoginPage() {
                     </div>
                     {/* User Submit Toggle  Block*/}
                     <form  onSubmit={FormHandle}>
+                      {
+                        !page && 
+                        <div className=' mt-4 '>
+                          <label htmlFor="" className=''>Name</label>
+                          <input type="name" onChange={(e) => setdisplayName(e.target.value)} className='border mt-2 rounded-sm shadow-md  w-full px-3 py-1 ' placeholder=' Enter Your Name'  />
+                        </div>
+                      }
                       <div className=' mt-4 '>
                         <label htmlFor="" className=''>Email</label>
                         <input type="email" onChange={(e) => setEmail(e.target.value)} className='border mt-2 rounded-sm shadow-md  w-full px-3 py-1 ' placeholder=' Enter Your Email'  />

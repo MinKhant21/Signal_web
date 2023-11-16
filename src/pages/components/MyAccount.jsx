@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SettingSvg from '../../assets/images/setting.svg'
 import Dropdown from './Dropdown'
+import 'firebase/auth';
+import { auth } from '../../firebase';
+import useGetUsers from '../../hooks/useGetUsers';
 export default function MyAccount() {
+     let [currentUser,setCurrentUser] = useState(null)
+     let {getCurrentUser} = useGetUsers();
      
+     useEffect(()=>{
+          let user = getCurrentUser()
+          setCurrentUser(user)
+     },[getCurrentUser])
   return (
     <>
      <div className=' flex justify-between items-center '>
           <img className=' rounded-full w-14' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDrmpYNvqOST9I5HZR-ZIwLULW2v0x2g7xOw&usqp=CAU" alt="" />
           <div>
-               <h2>KaungMinKhant</h2>
-               <span>kaung@gmail.com</span>
+               <h2>{currentUser.displayName}</h2>
+               <span>{currentUser.email}</span>
           </div>
           <Dropdown/>
           </div>
