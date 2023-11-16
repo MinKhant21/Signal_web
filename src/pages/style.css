@@ -1,0 +1,6 @@
+button span {
+  color:black;
+  background-image: url('../assets/images/setting.svg');
+  background-repeat: no-repeat;
+  background-position:center;
+}
