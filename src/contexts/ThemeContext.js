@@ -14,7 +14,7 @@ let ThemeReducer = (state,action) => {
 const ThemeContextProvider = ({children}) => {
 
      let [state,dispatch] = useReducer(ThemeReducer,{
-          theme:"dark"
+          theme:"light"
      })
 
      let changTheme = (theme) => {
