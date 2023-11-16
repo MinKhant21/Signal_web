@@ -10,7 +10,7 @@ export default function Drop() {
      }
      return (
           <div className=' float-right '>
-               <Dropdown>
+               <Dropdown placeholder='right'>
                     <Dropdown.Item>Dashboard</Dropdown.Item>
                     <Dropdown.Item>Settings</Dropdown.Item>
                     <Dropdown.Item>Earnings</Dropdown.Item>

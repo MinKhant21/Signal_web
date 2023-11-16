@@ -4,9 +4,8 @@ import { auth } from '../firebase'
 export default  function useGetUsers() {
  
      const getUsers = async () => {
-          // const userRecords = await auth().listUsers();
-          // const users = userRecords.map((userRecord) => userRecord.toJSON());
-          // console.log(users);
+          const userRecords = await auth.listUsers;
+          console.log(userRecords)
          
      }
      let getCurrentUser = () => {
