@@ -7,23 +7,32 @@ import 'firebase/auth';
 import { collection, doc, getDocs ,query,orderBy,onSnapshot} from '@firebase/firestore';
 export default function ChatList() {
      let [users,setUsers] = useState([{}]);
+     let [authUser,setAuthUser] = useState('')
+
      const fetchUsers =  useCallback(async() => {
+          
           const q = query(collection(db, "users"));
           const querySnapshot = await getDocs(q);
-          const userDataArray =[];
-          querySnapshot.forEach((doc) => {
-               if(doc.data().uid != 'K6yqQ3VrbAUyiZckQ9agzhlhW2b2')
-               {
-                    userDataArray.push(doc.data())
-               }
-          });
-          setUsers(userDataArray)
+          onSnapshot(q,docs=>{
+               const userDataArray =[];
+               docs.forEach(doc=>{
+                    if(doc.id != authUser.uid){
+                         let data = {
+                              ...doc.data()
+                         }
+                         userDataArray.push(data)
+                    }
+               })
+               setUsers(userDataArray)
+          })
 
+        },[query,getDocs,onSnapshot]);
 
-        },[query,getDocs]);
+        
      useEffect(()=>{
+          let user = auth.currentUser
+          setAuthUser(user)
           fetchUsers()
-
      },[fetchUsers])
   return (
     <>
