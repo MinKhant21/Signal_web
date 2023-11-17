@@ -3,7 +3,7 @@ import React from 'react'
 export default function ChatInput() {
   return (
     <>
-     <div className=' w-full h-[70px]'>
+     <div className=' w-full h-[70px] relative'>
               <div class="flex items-center justify-between w-full p-3 border-t border-gray-300">
               <button>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24"
@@ -21,7 +21,7 @@ export default function ChatInput() {
               </button>
 
               <input type="text" placeholder="Message"
-                class="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
+                class="block w-full py-2 pl-4 mx-3 bg-gray-100 cursor-auto rounded-full outline-none focus:text-gray-700"
                 name="message" required />
               <button>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24"
