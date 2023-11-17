@@ -65,8 +65,8 @@ export default function ChatList() {
                [combinedId + ".date"]: serverTimestamp(),
           });
           let data = {
-               combinedId,
                userInfo : {
+                    combinedId,
                     uid: user.uid,
                     displayName: user.displayName,
                }

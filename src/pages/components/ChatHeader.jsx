@@ -10,12 +10,14 @@ export default function ChatHeader() {
           <img className='ml-4 mt-2  rounded-full w-14' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDrmpYNvqOST9I5HZR-ZIwLULW2v0x2g7xOw&usqp=CAU" alt="" />
           <div className=''>
             <h2>
-              {
-                userInfo &&
+              {/* {
+                userInfo ?
                 <p>
                   {userInfo.userInfo.displayName}
                 </p>
-              }
+                :
+                <h1></h1>
+              } */}
             </h2>
             <p>online</p>
           </div>

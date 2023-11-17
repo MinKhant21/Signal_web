@@ -13,7 +13,7 @@ let ChatReducer = (state,action) => {
 
 const ChatContextProvider = ({children}) =>{
      let [state,dispatch] = useReducer(ChatReducer,{
-          userInfo:{}
+          userInfo:null
      })
 
      let ChangeUser = (user) => {

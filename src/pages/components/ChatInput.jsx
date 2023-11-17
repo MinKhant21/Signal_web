@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { ChatContext } from '../../contexts/ChatContext';
+import { collection, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 export default function ChatInput() {
+  let [message , setMessage] = useState('');
+
+  let {userInfo} = useContext(ChatContext)
+
+  let HandleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(userInfo.userInfo.combinedId)
+    await setDoc(doc(db, "chats", userInfo.userInfo.combinedId),{
+      message
+    })
+    
+    
+  }
   return (
     <>
      <div className=' w-full h-[70px] relative'>
@@ -20,7 +36,7 @@ export default function ChatInput() {
                 </svg>
               </button>
 
-              <input type="text" placeholder="Message"
+              <input type="text" placeholder="Message" onChange={(e)=>setMessage(e.target.value)}
                 class="block w-full py-2 pl-4 mx-3 bg-gray-100 cursor-auto rounded-full outline-none focus:text-gray-700"
                 name="message" required />
               <button>
@@ -30,7 +46,7 @@ export default function ChatInput() {
                     d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
               </button>
-              <button type="submit">
+              <button type="submit" onClick={HandleSubmit}>
                 <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20" fill="currentColor">
                   <path
