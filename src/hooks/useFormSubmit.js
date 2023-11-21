@@ -23,7 +23,7 @@ export default function  useFormSubmit () {
                          displayName,
                          email,
                     });
-                    await setDoc(doc(db, "userChats", res.user.uid), {});
+                    // await setDoc(doc(db, "userChats", res.user.uid), {});
                     setLoading(false)
                     setError('')
                     return res.user
@@ -33,7 +33,7 @@ export default function  useFormSubmit () {
                     console.log('login')
                     let res = await signInWithEmailAndPassword(auth,email,password)
                     console.log(res)
-                    console.log('hit')
+                    alert('hit')
                     if(res.user){
                          setLoading(false)
                          setError('')
