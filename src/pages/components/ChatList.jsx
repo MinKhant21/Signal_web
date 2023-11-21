@@ -39,14 +39,16 @@ export default function ChatList() {
      },[fetchUsers])
 
      const HandleSelect = async(user) =>{
-         let res = await getDoc(doc(db,'room',authUser.uid))
-         let members = res.data().members;
-         for (let index = 0; index < members.length; index++) {
+          let res = await getDoc(doc(db,'room',authUser.uid))
+          let members = res.data().members;
+          console.log(res.data())
+          for (let index = 0; index < members.length; index++) {
                if(members[index] == user.uid){
                     ChangeUser(user)
                }else{
                    let addMember = await setDoc(doc(db,'room',authUser.uid),{
-                    members : [members[index],user.uid]
+                         members : [members[index],user.uid],
+                         messages : [...res.data().messages]
                    })
                    if(addMember){
                          ChangeUser(user)

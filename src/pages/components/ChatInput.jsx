@@ -1,22 +1,14 @@
-import React, { useContext, useState } from 'react'
-import { ChatContext } from '../../contexts/ChatContext';
-import { collection, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import React, { useContext, useEffect, useState } from 'react'
 
 export default function ChatInput() {
   let [message , setMessage] = useState('');
 
-  let {userInfo} = useContext(ChatContext)
+  useEffect(()=>{
+  },[])
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userInfo.userInfo.combinedId)
-    await setDoc(doc(db, "chats", userInfo.userInfo.combinedId),{
-      message
-    })
-    
-    
-  }
+}
   return (
     <>
      <div className=' w-full h-[70px] relative'>
