@@ -25,7 +25,6 @@ export default function LoginPage() {
       if(!page){
         let user = await signUpAndsignIn(displayName,email,password,"Register")
          //Create a unique image name
-        
         if(user){
           if(error){
             toast.error(error)
